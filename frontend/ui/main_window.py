@@ -1,19 +1,14 @@
-from PyQt6.QtWidgets import QWidget , QVBoxLayout , QPushButton
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QPushButton
+from services.api_client import ApiClient
 
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
 
-        def rewrite_clicked(self):
-            print("rewrite clicked!!")
-        def grammar_clicked(self):
-            print("grammar clicked!!")
-        def professional_clicked(self):
-            print("professional clicked!!")
-        
+        self.api_client = ApiClient()
 
         self.setWindowTitle("AI Writing Assistant :)")
-        self.resize(400,300)
+        self.resize(400, 300)
 
         layout = QVBoxLayout()
 
@@ -25,8 +20,21 @@ class MainWindow(QWidget):
         layout.addWidget(self.grammar_button)
         layout.addWidget(self.professional_button)
 
-        self.rewrite_button.clicked.connect(rewrite_clicked)
-        self.grammar_button.clicked.connect(grammar_clicked)
-        self.professional_button.clicked.connect(professional_clicked)
+        self.rewrite_button.clicked.connect(self.rewrite_clicked)
+        self.grammar_button.clicked.connect(self.grammar_clicked)
+        self.professional_button.clicked.connect(self.professional_clicked)
 
         self.setLayout(layout)
+
+    def rewrite_clicked(self):
+        result = self.api_client.generate(
+            action="rewrite",
+            text="thjis is a sampel text with some erors."
+        )
+        print(result)
+
+    def grammar_clicked(self):
+        print("grammar clicked!!")
+
+    def professional_clicked(self):
+        print("professional clicked!!")
