@@ -13,6 +13,7 @@ def generate(prompt: str) -> str:
             "messages": [{"role": "user", "content": prompt}],
         }
         response = requests.post(LLM_URL, headers=headers, json=payload)
+        response.raise_for_status()
         data = response.json()
         return data["choices"][0]["message"]["content"]
     else:
