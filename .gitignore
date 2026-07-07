@@ -8,4 +8,13 @@
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
+*.egg-info/
+
+# Test artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Tests-specific cache
+tests/backend/__pycache__/
