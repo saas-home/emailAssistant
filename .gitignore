@@ -1,8 +1,9 @@
 #virtual environment
 .venv/
 
-#enivronment variables
+#environment variables
 .env
+.env.server
 
 
 # Python
